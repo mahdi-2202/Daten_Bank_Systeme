@@ -1,0 +1,13 @@
+% retrieve all employees
+% trc_employees := { E | true };
+
+% employees with more less than 60k salary
+%trc_SalariesLT60K := { E.eLast, E.eFirst, E.eSalary | employee(E) and E.eSalary < 60000 };
+
+% technology leads
+%trc_employeeLeads := { E, A | employee(E) and technologyArea(A) and E.eID = A.aLeadID };
+
+% managers which did not take any courses
+trc_ManagersNoCourses := { E | employee(E) and E.eTitle = 'Manager' and  not (exisets T) (takes(T) and T.eID = E.eID) };
+
+%trc_employeeMinSalary := { E | employee(E) and not (exists EMP)(employee(EMP) and EMP.eSalary < E.eSalary) };

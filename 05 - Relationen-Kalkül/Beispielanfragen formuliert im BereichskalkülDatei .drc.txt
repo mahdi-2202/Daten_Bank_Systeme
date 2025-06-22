@@ -1,0 +1,20 @@
+
+% print all employees with all attributes
+%drc_employees(eID, eLast, eFirst, eTitle, eSalary)  :=  { I, L, F, T, S | employee(I, L, F, T, S) };
+%drc_technologyArea(AID, ATitle, AURL, ALeadID) := { I, L, F, T | technologyArea(I, L, F, T) };
+%drc_trainingCourse(a, b, c, d) := { I, L, F, T | trainingCourse(I, L, F, T) };
+%drc_takes(x, y, z) := { X,Y, Z | takes(X,Y,Z) };
+
+% project on title
+% drc_Titles(eTitle) := { T | employee(I , L, F, T, S) };
+% drc_Titles(eTitle) := { T | employee(_ , _, _, T, _) };
+
+% selections
+%drc_Managers(eID, eLast, eFirst, eTitle, eSalary)  :=  { I, L, F, T | employee(I, L, F, T, _) and T = 'Manager' };
+%drc_managers_shortcut(eID, eLast, eFirst, eSalary) := { EID, ELast, EFirst, ESalary | employee(EID, ELast, EFirst, 'Manager', ESalary) };
+%drc_SalariesLT60K(eLast, eFirst, eSalary) := { L, F, S | employee(_, L, F, _, S) and S < 60000 };
+
+% employees which lead technology areas ("join")
+%drc_employeeLeads_shortcut(eID, eLast, eFirst, eTitle, eSalary, aID, aTitle, aURL) := { EID, ELast, EFirst, ETitle, ESalary, AID, ATitle, AURL | employee(EID, ELast, EFirst, ETitle, ESalary) and technologyArea(AID, ATitle, AURL, EID) };
+
+% drc_ManagersNoDBCourses(eID) := { I | employee(I, _, _, 'Manager', _) and not (exists CID)(takes(I, CID, _) and trainingCourse(CID, _, _, 'DB') ) };
