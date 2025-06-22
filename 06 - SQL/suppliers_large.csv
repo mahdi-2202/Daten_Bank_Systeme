@@ -1,0 +1,97 @@
+S_ID,CompanyName,ContactName,Phone,Address,City,Country
+1,Fresh Farms Inc.,Alice Johnson,555-4321,88 Farm Lane,Sacramento,USA
+2,Oceanic Traders,Peter Wong,555-8765,54 Marine Blvd.,Sydney,Australia
+3,Global Supplies Ltd.,Priya Sharma,555-6543,77 Global Way,London,UK
+4,Eco Goods Co.,Carlos Martinez,555-9823,101 Green Valley,São Paulo,Brazil
+5,Juarez Inc,Kelly Li,001-211-906-7471,"790 Burke Lake Apt. 358
+Victoriaport, VT 16034",North Michael,Bahamas
+6,"Bradley, Tran and Mitchell",Steven Russell,(773)976-5809x113,"5827 Browning Ramp Suite 672
+Christopherburgh, NH 09171",Stevenfort,Bahrain
+7,"Rivera, Morrison and Smith",Anna Ryan,001-143-806-8124x66414,"640 Brandon Inlet Suite 200
+Davisborough, NY 59126",Maryland,French Southern Territories
+8,Baker-Goodwin,Amber Rogers,001-537-213-3918x17565,"0451 Holly Mall Suite 715
+Charlesland, AZ 58525",South Beverlyton,Dominica
+9,Williams Group,Kevin Berry,(016)231-3156,"8785 Cabrera Brooks
+Port Rebekahtown, GA 33093",Port William,Cote d'Ivoire
+10,"Wilson, Brock and Moran",Rhonda Estrada,439.323.9601,"349 White Burg
+Caseytown, CA 40102",Rhondaview,New Caledonia
+11,Allen and Sons,Stephen Diaz,563-270-2202,"34159 Angela Lane Apt. 401
+Turnermouth, OH 89873",South Scott,Lesotho
+12,Young-Davis,Brandon Cummings MD,+1-874-659-5852,"020 Brooke Manor Apt. 510
+Katietown, NY 07146",Hessmouth,Nauru
+13,Jones-Shah,Cody Small,+1-853-981-7617,"17336 Teresa Views Suite 942
+Warrenmouth, KS 47338",Walterchester,Mauritius
+14,King LLC,Jo Jones,242.449.2044x7244,"2712 Cook Trail Apt. 655
+Teresastad, NV 30718",North Richardstad,Gabon
+15,"Hall, Dunn and Patterson",Jason Shaw,277-412-4195x03194,"Unit 4577 Box 9073
+DPO AA 44796",West Rebecca,Ukraine
+16,"Murphy, Orozco and Ford",Jordan Morgan,949-567-2301,"39366 Steve Island
+Gonzalezshire, LA 19874",North Aliciaburgh,Cook Islands
+17,"Davis, Sparks and Murphy",Dr. Kathy Dillon,(700)083-4050x6546,"USNV Keith
+FPO AE 68374",Thomasbury,Gambia
+18,Peterson LLC,Ana Warren,8487705226,"291 Holly Well
+Andrewtown, WA 54837",Josephbury,Malta
+19,Garcia Inc,Daniel Jacobson,(590)624-2944x4172,"7353 Brian Lane Suite 151
+Chasefort, KS 67351",Thomasview,Nicaragua
+20,"Soto, Munoz and Long",Francisco Johnson,843.723.9756x87957,"Unit 3938 Box 0913
+DPO AP 68039",South Crystalhaven,Malaysia
+21,Alexander Ltd,Justin Jackson,804.907.2357x1063,"826 Caitlin Shoals
+Costatown, MT 59799",South Stevenmouth,Kyrgyz Republic
+22,Marquez and Sons,Kevin Jackson,(818)008-1483,"PSC 8497, Box 4615
+APO AE 44740",Henrychester,France
+23,Singleton PLC,Cathy Spears,(856)099-9561,"11891 Hansen Inlet Suite 718
+East Robert, CT 09061",Snyderhaven,Bulgaria
+24,"Rodriguez, Williamson and Brooks",John Cole,(650)776-1771x889,"4311 Waters Canyon
+Scottside, VA 59737",Thomaschester,Lao People's Democratic Republic
+25,Higgins-Jordan,Jacqueline Perry,+1-594-104-6887,"697 Rodgers Bridge
+Port Richardmouth, NE 65361",Houstonview,Taiwan
+26,Mcconnell Ltd,Sheila Armstrong,558.911.3261,"980 Dennis Lodge
+Garcialand, TN 49865",South Andrewstad,Morocco
+27,Jones PLC,Robert Brady,0252424250,"PSC 1569, Box 5507
+APO AA 63304",Robinsontown,Holy See (Vatican City State)
+28,Harvey and Sons,Jennifer Clarke,041-807-1369x5969,"936 Williams Club
+West William, PA 80985",East Shannonport,Russian Federation
+29,Gill Inc,Teresa Anderson PhD,195-952-2400,"51343 Smith Corner
+Port Laurie, NH 53819",Bradyberg,Vanuatu
+30,Moody-Jacobs,Julie Thomas,(073)340-9608x56069,"USNS Clark
+FPO AA 89082",Lake Carl,Cocos (Keeling) Islands
+31,Ryan-Roberts,Stephanie Scott,976-714-0822,"002 Garcia Pass
+Terriborough, VT 13326",Lake Veronica,Uganda
+32,"Wilkins, Bush and Jones",Gregory Sweeney,376.225.8730x55288,"90729 Keller Bypass Suite 250
+Susanshire, MS 54317",Allenbury,Samoa
+33,Snyder-Smith,Jodi Schmidt,(709)234-0393,"00543 Olson Green Apt. 918
+Greenmouth, WV 05732",East Brian,Aruba
+34,"Ramirez, Gray and Price",Marcia Esparza,683-455-8168,"916 Catherine Turnpike
+Jessicashire, FL 43057",Bryanhaven,Italy
+35,"Stevens, Kennedy and Woods",Kenneth Grant DDS,+1-224-466-1090x7357,"604 Stephanie Tunnel
+South Manuelfurt, MI 55756",East Richardtown,Solomon Islands
+36,Booker-George,James Mcbride,620-385-3849,"825 Jones Ports Apt. 004
+Alexandermouth, MD 46022",Michaelshire,India
+37,"Davis, Humphrey and Jackson",Justin Wilson,825.722.7470x96411,"3529 Reyes Circle
+Thomasview, WI 72504",Lake Denise,Peru
+38,"Parker, Gilbert and Mendoza",Stephanie Rangel,987.072.8154,"9151 Mallory Pines Suite 378
+New Luiston, WY 65958",North Angela,Mongolia
+39,"Martinez, Tran and Carlson",Daniel Murphy,001-411-526-9212x0764,"52285 Heather Grove Suite 820
+Taylorberg, IL 97589",Hooverstad,Liberia
+40,Strickland Group,Patrick Richards,001-787-336-2898,"USS Hoffman
+FPO AA 41128",Stephanieshire,Turkmenistan
+41,Turner LLC,Miranda Harris,+1-730-408-0429,"9836 Michael Overpass Suite 006
+West Thomasland, NJ 91371",East Jamesmouth,Nigeria
+42,Reed-Burke,Valerie Bennett,(879)843-1537x868,"041 Jenkins Underpass
+East Gregoryberg, NJ 48916",New Alyssachester,Bahamas
+43,James Inc,Anthony Gibson,149.144.0907x499,"314 Luke Dale
+Paulhaven, ND 83933",Corychester,Kiribati
+44,"Evans, Franklin and Taylor",Jessica Wang,151.018.6370x755,"01280 Melanie Locks Apt. 765
+Jessicashire, NE 17942",East Michelle,Haiti
+45,"Galloway, Cole and Green",Lindsay Ramos,844.329.2133x9702,"601 Garcia Spur Apt. 211
+Angelaside, CA 33472",Kristenmouth,Australia
+46,"Nelson, Rasmussen and Nichols",Nancy Simpson,(927)390-7840,"53927 Charlene Burgs Suite 316
+Douglaston, AK 26591",South Timothy,Honduras
+47,Serrano PLC,Melanie Cabrera,837-278-6937,"639 Mcneil Heights
+Denisefort, GA 86399",Petersonhaven,Israel
+48,"Duncan, Welch and Castro",Vanessa Gonzalez DVM,400.720.2011x5196,"8479 Leroy Forges Apt. 920
+East Willieville, AL 36305",Johnstonfurt,Palau
+49,Davis and Sons,Darlene Murray,455.558.3084,"8697 Ellen Estates
+West Nicoleport, MA 81081",Markland,Timor-Leste
+50,Villa and Sons,Brianna Clarke,(637)058-0917,"7480 Aaron Orchard Apt. 827
+Spencerfort, TN 28997",New Alyssabury,Heard Island and McDonald Islands
