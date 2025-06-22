@@ -1,0 +1,220 @@
+-----------------------------------------------------------------------------
+-- Common Table Expressions (CTEs) and Views
+-----------------------------------------------------------------------------
+
+WITH CustomerTotalSpending AS (
+    SELECT C.C_ID, C.Name, SUM(O.TotalAmount) AS TotalSpent
+    FROM Customers C INNER JOIN Orders O ON C.C_ID = O.C_ID
+    GROUP BY C.C_ID, C.Name
+)
+
+SELECT C_ID, Name, TotalSpent
+FROM CustomerTotalSpending
+ORDER BY TotalSpent DESC
+LIMIT 5;
+
+
+with AVERAGE(avg_price) as (select avg(PricePerUnit) from products) 
+select * from products, AVERAGE
+ where PricePerUnit <= 1.1 * avg_price and PricePerUnit >= 0.9 * avg_price
+
+
+CREATE VIEW OrderDetailsView AS
+SELECT O.OR_ID, 
+       O.OrderDate, 
+       O.TotalAmount, 
+       C.Name AS CustomerName, 
+       C.Email AS CustomerEmail, 
+       S.CompanyName AS SupplierName, 
+       S.ContactName AS SupplierContact
+FROM Orders O
+INNER JOIN Customers C ON O.C_ID = C.C_ID
+INNER JOIN Suppliers S ON O.S_ID = S.S_ID;
+
+SELECT OR_ID, 
+       OrderDate, 
+       CustomerName, 
+       SupplierName, 
+       TotalAmount
+FROM OrderDetailsView
+WHERE TotalAmount > 500
+ORDER BY OrderDate DESC;
+
+-----------------------------------------------------------------------------
+-- Pivoting
+-----------------------------------------------------------------------------
+
+create table cities (
+country varchar(50),
+name varchar(50),
+year integer,
+population integer
+);
+
+insert into cities values ('NL','Amsterdam',2000,1005);
+insert into cities values ('NL','Amsterdam',2010,1065);
+insert into cities values ('NL','Amsterdam',2020,1158);
+insert into cities values ('US','Seattle',2000,564);
+insert into cities values ('US','Seattle',2010,608);
+insert into cities values ('US','Seattle',2020,738);
+insert into cities values ('US','New York',2000,8015);
+insert into cities values ('US','New York',2010,8175);
+insert into cities values ('US','New York',2020,8772);
+
+SELECT Country, SUM(Population) FILTER (WHERE YEAR = 2000) "2000",
+SUM(Population) FILTER (WHERE YEAR = 2010) "2010",
+SUM(Population) FILTER (WHERE YEAR = 2020) "2020"
+FROM Cities GROUP BY Country;
+
+SELECT Country, SUM(CASE WHEN YEAR = 2000 THEN Population END) AS "2000",
+SUM(CASE WHEN YEAR = 2010 THEN Population END) AS "2010",
+SUM(CASE WHEN YEAR = 2020 THEN Population END) AS "2020"
+FROM Cities GROUP BY Country;
+
+SELECT * FROM (
+PIVOT Cities ON YEAR USING SUM(Population) GROUP BY Country
+) pivot_alias;
+
+-----------------------------------------------------------------------------
+-- Recursion
+-----------------------------------------------------------------------------
+
+WITH RECURSIVE Fibonacci(PrevN, N) AS (
+SELECT 0, 1
+UNION ALL
+SELECT N, PrevN + N FROM Fibonacci WHERE N < 100
+)
+SELECT PrevN AS Fibo FROM Fibonacci;
+
+-----------------------------------------------------
+
+create table flights (
+ departure varchar(30),
+ arrival varchar(30),
+ flighttime integer
+);
+
+insert into flights values ('FRA','LHR',2);
+insert into flights values ('FRA','JFK',8);
+insert into flights values ('LHR','SFO',10);
+insert into flights values ('SFO','HNL',4);
+insert into flights values ('FRA','AMS',2);
+insert into flights values ('AMS','HNL',12);
+insert into flights values ('HNL','LHR',14);
+
+----------------------------------------------------------------------------------------------------------
+
+-- (Q) Find flight connections from Frankfurt (’FRA’) with at most two changes in between
+SELECT Departure, Arrival
+FROM FLIGHTS
+WHERE Departure = 'FRA'
+UNION
+SELECT F1.Departure, F2.Arrival
+FROM FLIGHTS F1, FLIGHTS F2
+WHERE F1.Departure = 'FRA' AND F1.Arrival = F2.Departure
+UNION
+SELECT F1.Departure, F3.Arrival
+FROM FLIGHTS F1, FLIGHTS F2, FLIGHTS F3
+WHERE F1.Departure = 'FRA' AND F1.Arrival = F2.Departure AND F2.Arrival = F3.Departure;
+
+----------------------------------------------------------------------------------------------------------
+
+WITH RECURSIVE TRIP(Departure, Arrival) AS (
+SELECT Departure, Arrival
+FROM FLIGHTS
+WHERE Departure = 'FRA'
+UNION ALL
+SELECT T.Departure, F.Arrival
+FROM FLIGHTS F, TRIP T
+WHERE T.Arrival = F.Departure
+)
+SELECT * FROM TRIP;
+
+----------------------------------------------------------------------------------------------------------
+
+WITH RECURSIVE TRIP(Departure, Arrival, TotalTime) AS (
+SELECT Departure, Arrival, FlightTime AS TotalTime
+FROM FLIGHTS
+WHERE Departure = 'FRA'
+UNION ALL
+SELECT T.Departure, F.Arrival, TotalTime + FlightTime
+FROM TRIP T, FLIGHTS F
+WHERE T.Arrival = F.Departure
+)
+SELECT * FROM TRIP;
+
+----------------------------------------------------------------------------------------------------------
+
+    WITH RECURSIVE TRIP(Departure, Arrival, Changes) AS (
+    SELECT Departure, Arrival, 0
+    FROM FLIGHTS
+    WHERE Departure = 'FRA'
+    UNION ALL
+    SELECT T.Departure, F.Arrival, Changes + 1
+    FROM TRIP T, FLIGHTS F
+    WHERE T.Arrival = F.Departure AND Changes < 2)
+    SELECT DISTINCT * FROM TRIP;
+
+----------------------------------------------------------------------------------------------------------
+
+create table tag (
+    id integer,
+    name varchar(50),
+    subclassof integer
+);
+
+insert into tag values (1,'U2',5);
+insert into tag values (2,'Blur',5);
+insert into tag values (3,'Oasis',5);
+insert into tag values (4,'2Pac',6);
+insert into tag values (5,'Rock',7);
+insert into tag values (6,'Rap',7);
+insert into tag values (7,'Music',9);
+insert into tag values (8,'Movies',9);
+insert into tag values (9,'Art',NULL);
+
+WITH RECURSIVE tag_hierarchy(id, source, path) AS (
+SELECT id, name, [name] AS path
+FROM tag
+WHERE subclassof IS NULL
+UNION ALL
+SELECT tag.id, tag.name, list_prepend(tag.name,
+tag_hierarchy.path)
+FROM tag, tag_hierarchy
+WHERE tag.subclassof = tag_hierarchy.id
+)
+SELECT path FROM tag_hierarchy WHERE source = 'Oasis';
+
+----------------------------------------------------------------------------------------------------------
+
+CREATE TABLE edges(node1id INT, node2id INT);
+INSERT INTO edges VALUES (1, 3), (1, 5), (2, 4), (2, 5), (2, 10), (3, 1), (3, 5), (3,
+8), (3, 10), (5, 3), (5, 4), (5, 8), (6, 3), (6, 4), (7, 4), (8, 1), (9, 4);
+
+-- Return all paths starting at node 1
+WITH RECURSIVE paths(startNode, endNode, path) AS (
+-- define the path as the first edge of the traversal
+SELECT node1id AS startNode, node2id AS endNode, [node1id, node2id] AS path
+FROM edges
+WHERE startNode = 1
+UNION ALL
+-- concatenate new edge to the path
+SELECT paths.startNode AS startNode, node2id AS endNode, array_append(path, node2id) AS path
+FROM paths JOIN edges ON paths.endNode = node1id
+-- Prevent adding a repeated node to the path (ensures that no cycles occur)
+WHERE node2id != ALL(paths.path)
+)
+SELECT startNode, endNode, path FROM paths ORDER BY length(path), path;
+
+-- Return unweighted shortest paths starting at node 1
+WITH RECURSIVE paths(startNode, endNode, path) AS (
+SELECT node1id AS startNode, node2id AS endNode, [node1id, node2id] AS path
+FROM edges WHERE startNode = 1
+UNION ALL
+SELECT paths.startNode AS startNode, node2id AS endNode, array_append(path, node2id) AS path
+FROM paths JOIN edges ON paths.endNode = node1id
+WHERE NOT EXISTS (SELECT 1
+FROM paths previous_paths
+WHERE list_contains(previous_paths.path, node2id))
+)
+SELECT startNode, endNode, path FROM paths ORDER BY length(path), path;
