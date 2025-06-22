@@ -1,0 +1,375 @@
+
+<!-- saved from url=(0040)https://normalizer.db.in.tum.de/index.py -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			
+			<title>DB-&gt;normalizer</title>
+			<link rel="stylesheet" type="text/css" href="./DB-_normalizer_files/bootstrapcosmo.min.css">
+			<script src="./DB-_normalizer_files/jquery-1.11.3.min.js.Download"></script>
+			<script src="./DB-_normalizer_files/bootstrap.min.js.Download"></script>
+			<script src="./DB-_normalizer_files/js.cookie.js.Download"></script>
+		</head>
+<body>
+	<div class="panel panel-default">
+  	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-6">
+<h1><big><a href="https://normalizer.db.in.tum.de/index.py" style="text-decoration:none;"><span class="text-muted">DB<span id="arrow" name="arrow" style="display: inline;" class="text-warning">-&gt;</span>normalizer</span></a></big><small>
+</small></h1>
+                        <script>
+                                var colors=["info", "warning", "primary", "success", "danger"];
+                                var index=0;
+                                function changeArrowColor(){
+                                    if (index == colors.length){
+                                                index=0;
+                                        }
+                                     $('#arrow').hide().removeClass().addClass("text-"+colors[index]).fadeIn(3000);
+                                     index++;
+                                }
+                                $(document).ready(changeArrowColor());
+                                setInterval(changeArrowColor,10000);
+                        </script></div>
+			<div class="col-md-6">
+				<p class="text-right"><a href="https://normalizer.db.in.tum.de/tutorial.py" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Tutorial</a> <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#helpModal" style="display:inline;">
+		 			<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Hilfe</button>
+				</p>
+			</div>
+		</div>
+
+		<br>
+
+		<form id="inputform" class="form" action="https://normalizer.db.in.tum.de/index.py" method="POST"> 
+				<div class="form-group">
+					<h4>Relation eingeben</h4>
+					<input type="text" class="form-control" id="relation" name="relation" value="
+ABCDE">
+					<h4>FDs/MVDs eingeben</h4>
+					<textarea type="text" class="form-control" rows="6" id="fds" name="fds">CD-&gt;B
+ACD-&gt;E
+
+</textarea>
+					<input type="hidden" value="
+5
+" name="numberOfAttributes">
+					<input type="hidden" value="1" name="step">
+				</div>
+				<div class="form-group">
+						<button id="submitbutton" name="mode" type="submit" class="btn btn-default" value="showResults">Ergebnis anzeigen</button>
+						<button id="quizButton" name="mode" type="submit" class="btn btn-primary" value="quiz">Quiz</button>
+						<div class="pull-right dropup">					
+						<a href="https://normalizer.db.in.tum.de/index.py#" class="btn btn-default btn-sm" id="saveSchema" onclick="saveSchema();"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Schema speichern</a>
+						<button href="#" class="btn btn-default btn-sm dropdown-toggle" data-loading-text="Lädt..." data-toggle="dropdown" id="schemaDropdownButton">
+							Schema laden
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" id="schemaDropdown"><li class="dropdown-header">GDB Schemata</li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s0&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(ABCDEF): B-&gt;DA; DEF-&gt;B; C-&gt;EA">Schema 1</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s1&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(Name,Aufgabe,Max,Erzielt,ErzieltSumme,MaxSumme,KNote,Bonus,GNote): KNote,Bonus-&gt;GNote; Aufgabe-&gt;Max; ErzieltSumme-&gt;KNote; Name,Aufgabe-&gt;Erzielt; Name-&gt;ErzieltSumme,Bonus,GNote; -&gt;MaxSumme">Schema 2</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s2&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(ABCDEF): A-&gt;BC; C-&gt;DA; E-&gt;ABC; F-&gt;CD; CD-&gt;BEF">Schema 3</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s3&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(ABCDEFG): A-&gt;BC; DE-&gt;B; F-&gt;A; E-&gt;BF; A-&gt;DE; C-&gt;A">Schema 4</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s4&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(ABCD): AB-&gt;&gt;C; BC-&gt;&gt;D; BA-&gt;CD; DA-&gt;B">Schema 5</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s5&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(person,kindName,kindAlter,fahrradTyp,fahrradFarbe): person-&gt;&gt;kindName,kindAlter; person-&gt;&gt;fahrradTyp,fahrradFarbe; kindName-&gt;kindAlter">Schema 6</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s6&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(ABCDEF): AB-&gt;CD; ABC-&gt;D; E-&gt;C; D-&gt;C; CDE-&gt;AB">Schema 7</span></a></li><li><a href="https://normalizer.db.in.tum.de/index.py#" onclick="setContent(&#39;s7&#39;)"><span data-toggle="tooltip" data-placement="top" data-html="true" title="R(matrnr,name,semester,vorlnr,titel,sws,gelesenvon): matrnr-&gt;name,semester; vorlnr-&gt;titel,sws,gelesenvon">Schema 8</span></a></li>
+						</ul>
+						</div>
+				</div>			
+		</form>
+		<form class="form-inline" action="https://normalizer.db.in.tum.de/index.py" method="POST">
+				<div class="form-group">
+				<h4>Neues Schema generieren</h4>
+				Generiere neues Schema mit
+				<select class="form-control input-sm" name="numberOfAttributes">
+<option>3</option><option>4</option><option selected="">5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+</select> Attributen
+			<button id="mode" name="mode" type="submit" class="btn btn-default btn-sm" value="generateFds">nur mit FDs</button>
+			<button id="mode" name="mode" type="submit" class="btn btn-default btn-sm" value="generateMvds">auch mit MVDs</button>	
+		</div>
+                </form>
+		</div>
+		<br><div class="panel-body"><h2>Algorithmen</h2><div class="panel panel-default"><div class="panel-body"><br><span id="collapsenormalforms" data-toggle="collapse" href="#containernormalforms">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4><span name="menuicon" class="glyphicon glyphicon-menu-right" aria-hidden"true"=""></span> Normalformen</h4></div>
+		</div>
+		</span>
+		<div class="panel-collapse collapse " id="containernormalforms"><div class="row"><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">1NF</h3></div><div class="panel-body">Schema ist in 1NF, wenn alle Attribute atomar sind (trivial).</div></div></div><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">2NF</h3></div><div class="panel-body">Schema ist in 2NF, wenn es in 1NF ist und für jedes Attribut b auf der rechten Seite gilt:
+							<ol>
+								<li>b ist Teil eines Kandidatenschlüssels <b>oder</b></li>
+								<li>b ist nicht von einer echten Teilmenge eines Kandidatenschlüssels abhängig</li>
+							</ol></div></div></div><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">3NF</h3></div><div class="panel-body">Schema ist in 3NF, wenn jede FD α-&gt;β mindestens eine der folgenden Bedingungen erfüllt:
+			<ol>
+				<li>α-&gt;β ist trivial (β⊆α)</li>
+				<li>α ist Superschlüssel</li>
+				<li>Jedes Attribut in β ist in einem Kandidatenschlüssel enthalten</li>
+			</ol></div></div></div><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">BCNF</h3></div><div class="panel-body">Schema ist in BCNF, wenn jede FD α-&gt;β mindestens eine der folgenden Bedingungen erfüllt:
+			<ol>
+				<li>α-&gt;β ist trivial (β⊆α)</li>
+				<li>α ist Superschlüssel</li>
+			</ol></div></div></div><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">4NF</h3></div><div class="panel-body">Schema ist in 4NF, wenn jede MVD α-&gt;&gt;β mindestens eine der folgenden Bedingungen erfüllt:
+			<ol>
+				<li>α-&gt;&gt;β ist trivial (β⊆α oder α∪β = R)</li>
+				<li>α ist Superschlüssel</li>
+			</ol></div></div></div></div></div>
+		<script>
+			$('#collapsenormalforms').on('click', function () {
+			if($('#containernormalforms').is(':visible')){
+    			$('#collapsenormalforms').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-right'); 
+			}
+			else{      
+    			 $('#collapsenormalforms').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-down');
+			}
+			});
+		</script>
+
+
+		<br><span id="collapsecanonicalCover" data-toggle="collapse" href="#containercanonicalCover">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4><span name="menuicon" class="glyphicon glyphicon-menu-right" aria-hidden"true"=""></span> Kanonische Überdeckung</h4></div>
+		</div>
+		</span>
+		<div class="panel-collapse collapse " id="containercanonicalCover"><div class="row"><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">1</span> Linksreduktion</h3></div><div class="panel-body">Was kann ich links weglassen?</div></div></div><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">2</span> Rechtsreduktion</h3></div><div class="panel-body">Was kann ich rechts weglassen?</div></div></div><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">3</span> α→∅ entfernen</h3></div><div class="panel-body">FDs mit leerer rechter Seite entfernen</div></div></div><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">4</span> FDs zusammenfassen</h3></div><div class="panel-body">FDs mit gleichen linken Seiten zusammenfassen</div></div></div></div></div>
+		<script>
+			$('#collapsecanonicalCover').on('click', function () {
+			if($('#containercanonicalCover').is(':visible')){
+    			$('#collapsecanonicalCover').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-right'); 
+			}
+			else{      
+    			 $('#collapsecanonicalCover').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-down');
+			}
+			});
+		</script>
+
+
+		<br><span id="collapsesynthese" data-toggle="collapse" href="#containersynthese">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4><span name="menuicon" class="glyphicon glyphicon-menu-right" aria-hidden"true"=""></span> Synthesealgorithmus (überführt R in 3NF)</h4></div>
+		</div>
+		</span>
+		<div class="panel-collapse collapse " id="containersynthese"><div class="row"><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">1</span> Kanonische Überdeckung</h3></div><div class="panel-body">Bestimme die kanonische Überdeckung (s. oben)</div></div></div><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">2</span> Relationsschemata formen</h3></div><div class="panel-body">Aus jeder FD der kanonischen Überdeckung entsteht eine neue Relation</div></div></div><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">3</span> Schlüssel hinzufügen</h3></div><div class="panel-body">Füge ein neues Relationsschema mit einem Kandidatenschlüssel hinzu, falls keiner der Kandidatenschlüssel vollständig in einem Schema enthalten ist</div></div></div><div class="col-xs-8 col-sm-6 col-md-3"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title"><span class="badge">4</span> Redundante Schemata eliminieren</h3></div><div class="panel-body">Eliminiere R<sub>a</sub>, wenn R<sub>a</sub> ⊆ R<sub>a'</sub></div></div></div></div></div>
+		<script>
+			$('#collapsesynthese').on('click', function () {
+			if($('#containersynthese').is(':visible')){
+    			$('#collapsesynthese').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-right'); 
+			}
+			else{      
+    			 $('#collapsesynthese').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-down');
+			}
+			});
+		</script>
+
+
+		<br><span id="collapsedecompositionBCNF" data-toggle="collapse" href="#containerdecompositionBCNF">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4><span name="menuicon" class="glyphicon glyphicon-menu-right" aria-hidden"true"=""></span> Dekompositionsalgorithmus (überführt R in BCNF)</h4></div>
+		</div>
+		</span>
+		<div class="panel-collapse collapse " id="containerdecompositionBCNF"><div class="row"><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">Initialisierung</h3></div><div class="panel-body">Starte mit Z={R}</div></div></div><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">Solange es noch eine FD in einem Schema R<sub>i</sub> ∈ Z gibt, die die BCNF verletzt</h3></div><div class="panel-body">
+				<ul style="list-style-type:square;">
+					<li>Zerlege R<sub>i</sub> in
+						<ul style="list-style-type:square;">
+							<li>R<sub>i1</sub> = α ∪ β  </li>
+							<li>R<sub>i2</sub> = R<sub>i</sub> - β </li>
+						</ul>
+					</li>
+					<li>
+						Entferne R<sub>i</sub> aus Z und füge R<sub>i1</sub> und R<sub>i2</sub> ein
+					</li>
+				</ul>
+				</div></div></div></div></div>
+		<script>
+			$('#collapsedecompositionBCNF').on('click', function () {
+			if($('#containerdecompositionBCNF').is(':visible')){
+    			$('#collapsedecompositionBCNF').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-right'); 
+			}
+			else{      
+    			 $('#collapsedecompositionBCNF').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-down');
+			}
+			});
+		</script>
+
+
+		<br><span id="collapsedecomposition4NF" data-toggle="collapse" href="#containerdecomposition4NF">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4><span name="menuicon" class="glyphicon glyphicon-menu-right" aria-hidden"true"=""></span> Dekompositionsalgorithmus (überführt R in 4NF)</h4></div>
+		</div>
+		</span>
+		<div class="panel-collapse collapse " id="containerdecomposition4NF"><div class="row"><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">Initialisierung</h3></div><div class="panel-body">Starte mit Z={R}</div></div></div><div class="col-xs-8 col-sm-6 col-md-12"><div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">Solange es noch eine MVD in einem Schema R<sub>i</sub> ∈ Z gibt, die die 4NF verletzt</h3></div><div class="panel-body">
+				<ul style="list-style-type:square;">
+					<li>Zerlege R<sub>i</sub> in
+						<ul style="list-style-type:square;">
+							<li>R<sub>i1</sub> = α ∪ β  </li>
+							<li>R<sub>i2</sub> = R<sub>i</sub> - β </li>
+						</ul>
+					</li>
+					<li>
+						Entferne R<sub>i</sub> aus Z und füge R<sub>i1</sub> und R<sub>i2</sub> ein
+					</li>
+				</ul>
+				</div></div></div></div></div>
+		<script>
+			$('#collapsedecomposition4NF').on('click', function () {
+			if($('#containerdecomposition4NF').is(':visible')){
+    			$('#collapsedecomposition4NF').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-right'); 
+			}
+			else{      
+    			 $('#collapsedecomposition4NF').find('span[name="menuicon"]').removeClass().addClass('glyphicon glyphicon-menu-down');
+			}
+			});
+		</script>
+
+
+		</div></div></div>
+	</div>
+	
+	<br>
+	<br>	
+	<br>
+		<!-- Modal: help -->
+		<div id="helpModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3 class="modal-title">Hilfe</h3>
+				</div>
+				<div class="modal-body">
+					<p>
+						</p><h4>Relation eingeben</h4>
+						<p>Du kannst eine Relation eingeben, indem du Attribute in das obere Textfeld schreibst. Hier hast du zwei Möglichkeiten:
+						</p><ul><li>Jeder Buchstabe ein Attribut: Wenn du die Attribute nicht durch Kommas trennst, bezeichnet jeder Buchstabe ein Attribut. <code>ABCD</code> bedeutet also, dass die Relation die Attribute <code>A</code>, <code>B</code>, <code>C</code> und <code>D</code> enthält.</li>
+						<li>Lange Attributnamen: Du kannst auch längere Attributnamen verwenden, diese musst du dann durch Kommas trennen. Beispiel: <code>AttributA,AttributB,AttributC</code>
+						</li></ul>	
+						<p></p>
+						<h4>FDs/MVDs eingeben</h4>
+						<p>
+						Abhängigkeiten kannst du ins untere Textfeld schreiben; verwende für jede Abhängigkeit eine neue Zeile. Verwende <code>-&gt;</code>, um eine FD bzw. <code>-&gt;&gt;</code>, um eine MVD einzugeben. Links und rechts vom Pfeil kannst du Attribute in der gleichen Form angeben wie oben in der Relation. Wenn du auf einer Seite kein Attribut angibst, wird dies als leere Menge (<code>∅</code>) interpretiert. 
+						</p>
+						<h4>Schema generieren</h4>
+						<p>
+						Du kannst ein neues, zufälliges Schema generieren, indem du die gewünschte Attributzahl über das Dropdown wählst und dann über Klick auf <span class="btn btn-default btn-xs">nur mit FDs</span> oder <span class="btn btn-default btn-xs">auch mit MVDs</span> entscheidest, ob im generierten Schema MVDs enthalten sein sollen oder nicht. Ein manuelles Neuladen der Webseite generiert immer ein Schema mit 5 Attributen ohne MVDs.
+						</p>
+						<h4>Schema speichern</h4>
+						<p>
+						Mit Klick auf <span class="btn btn-default btn-xs">Schema speichern</span> kannst du das aktuell eingegebene Schema speichern, um es später wieder laden zu können. Das Schema wird dabei als Cookie gespeichert; ist also verloren, wenn du die Cookies für diese Seite löschst.
+						</p>
+						<h4>Schema laden</h4>
+						<p>
+						Mit Klick auf <span class="btn btn-default btn-xs">Schema laden</span> kannst du deine gespeicherten Schemata laden. Zusätzlich sind auch GDB-Schemata hinterlegt; das sind Übungsaufgaben aus der GDB-Übung.
+						</p>
+						<h4>Ergebnis anzeigen</h4>
+						<p>
+						Mit Klick auf <span class="btn btn-default btn-xs">Ergebnis anzeigen</span> werden alle relevanten Eigenschaften des Schemas berechnet und das Schema anschließend in höhere Normalformen überführt. Es werden dabei von allen Algorithmen alle Zwischenschritte angezeigt. Es wird allerdings jeweils nur eine mögliche Lösung angezeigt, möglicherweise gibt es noch andere, richtige Lösungen.
+						</p>
+						<h4>Quiz</h4>
+						<p>
+						Mit Klick auf <span class="btn btn-primary btn-xs">Quiz</span> kannst du das Quiz starten. Hier wirst du nacheinander alles abgefragt (Eigenschaften des Schemas sowie Überführung in höhere Normalformen) und bekommst nach jedem Schritt Feedback, ob deine Lösung richtig ist oder nicht. 
+						</p>
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
+
+
+
+	<script>
+		$(document).ready(function(){
+   		 $('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+	<script>
+		$('[data-toggle="popover"]').each(function(){
+   		 $(this).popover(
+				{
+				trigger: 'hover',
+				container:$(this)
+				}
+			);   
+		});
+	</script>
+	<script>
+		function addSchemaToList(id, schema=""){
+			if(schema == ""){
+				schema = Cookies.get(id);
+			}
+			schema = schema.trim().replace(/;/g, '; ').replace(';', '):');
+			$('#schemaDropdown').append("<li name='"+id+"'><a href='#'><span onclick='setContent(\""+id+"\")'><span data-toggle='tooltip' data-placement='top'  data-html='true' title='R("+schema+"'>Schema "+id+"</span></span> <span class='glyphicon glyphicon-trash btn-xs' onclick='deleteSchema(\""+id+"\")'></span></a></li>");			
+		}
+		function appendDropdownHeader(){
+			 $('#schemaDropdown').append("<span id='dropdownHeader'><li role='separator' class='divider'></li><li class='dropdown-header'>Meine Schemata</li></span>");
+		}
+		function removeDropdownHeader(){
+			 $('#dropdownHeader').remove();
+		}
+
+		$(document).ready(function(){
+                       //saved user schemas
+                        savedSchemas = getSavedSchemas();
+			if(Object.keys(savedSchemas).length > 0){
+				appendDropdownHeader();
+                       	}
+			$.each(savedSchemas, function(id){
+				addSchemaToList(id);
+                       	});
+			//predefined schemas
+			$.get('predefinedSchemas.py', function(result) {
+				$('#schemaDropdown').prepend(result.trim());
+				$('#schemaDropdown').prepend("<li class='dropdown-header'>GDB Schemata</li>");
+			});
+		});
+
+		function setContent(r){
+			var btn = $('#schemaDropdownButton').button('loading');
+                        if(r.match('^s.+')){
+                                //predefined
+                                $.get('predefinedSchemas.py?schema='+r, function(result) {
+					var schema = result.trim().split(";");
+					$('#relation').val(schema[0]);
+                        		$('#fds').val(schema.slice(1).join("\n"));
+                        		btn.button('reset');
+                                });
+                        }
+                        else{
+                                //user-defined
+                                var schema = Cookies.get(r).trim().split(";");
+				$('#relation').val(schema[0]);
+                                $('#fds').val(schema.slice(1).join("\n"));
+                                btn.button('reset');
+                        }
+		}
+
+                function getSavedSchemas(){
+                        var schemas = Cookies.get();
+			var result = {};
+			for(var s in schemas){
+				if ($.isNumeric(s)){
+					result[s] = schemas[s];
+				}
+			}
+			return result;
+                }
+                function saveSchema(){
+                       schemas = getSavedSchemas();
+			var newSchemaId = 1;
+			if (Object.keys(schemas).length>0){
+				var schemaIds = Object.keys(schemas);
+	                       	newSchemaId = Math.max.apply(Math,schemaIds)+1;
+			}
+			else{
+				appendDropdownHeader();
+			}
+			var schema = $('#relation').val().trim()+';'+$('#fds').val().trim().replace(/(\s*\n\s*)*$/g, '').replace(/\n/g, ';');
+			addSchemaToList(newSchemaId, schema);
+			Cookies.set(newSchemaId, schema, { expires: 180 });
+			alert('Schema gespeichert als "Schema '+newSchemaId+'"');
+		}
+		
+		function deleteSchema(id){
+			$('#schemaDropdown').find('li[name='+id+']').remove();
+			Cookies.remove(id);
+			schemas = getSavedSchemas();
+			if (Object.keys(schemas).length == 0){
+				removeDropdownHeader();
+			}
+		}
+        </script>
+	
+
+
+</body></html>
