@@ -16,6 +16,6 @@ Database
 <br>– For example, a university database might contain information about
 <br>– entities (e.g., students, courses, faculties, ...)
 <br>– relationships among entities (e.g., ’Bill is taking the Database Systems course’)
-<br>Database Management System
+<br><br>Database Management System
 <br>– A collection of software packages designed to store, access, and manage databases
 
